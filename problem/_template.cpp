@@ -1,8 +1,9 @@
 #include <iostream>
 using namespace std;
+int N;
+int ans;
 int main() {
-    auto a=0, b=0;
-    cin >> a >> b;
-    cout << a+b << endl;
+    cin >> N;
+    cout << ans << endl;
     return 0;
 }
