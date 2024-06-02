@@ -4,20 +4,21 @@ using namespace std;
 
 int N;
 
+char arr_in[101][101];
 char arr[101][101];
 
 int ans;
 int ans_blind;
 
 int search(int i, int j, char k) {
-    cin >> N;
     if (arr[i][j]) {
         if (arr[i][j]==k) {
             //cout << arr[i][j];
+            arr[i][j] = 0;
             if (i+1<N) {
                 search(i+1,j,k);
             }
-            if (j+i<N) {
+            if (j+1<N) {
                 search(i,j+1,k);
             }
             if (i > 0) {
@@ -26,7 +27,7 @@ int search(int i, int j, char k) {
             if (j > 0) {
                 search(i,j-1,k);
             }
-            arr[i][j] = 0;
+            
             return 1;
         }
     }
@@ -34,12 +35,14 @@ int search(int i, int j, char k) {
 }
 
 int main(void)
-{
+{   
+    cin >> N;
     for (int i=0;i<N;i++) {
        for (int j=0;j<N;j++) {
         char color;
         cin >> color;
         arr[i][j] = color;
+        arr_in[i][j] = color;
        }
     } 
 
@@ -55,6 +58,7 @@ int main(void)
 
     for (int i=0;i<N;i++) {
        for (int j=0;j<N;j++) {
+        arr[i][j] = arr_in[i][j];
         if (arr[i][j] == 'G') {
             arr[i][j] = 'R';
         }
