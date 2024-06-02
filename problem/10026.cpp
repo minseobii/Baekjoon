@@ -34,7 +34,7 @@ int search(int i, int j, char k) {
     return 0;
 }
 
-int main(void)
+int main()
 {   
     cin >> N;
     for (int i=0;i<N;i++) {
