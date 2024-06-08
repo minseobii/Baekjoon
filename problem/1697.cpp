@@ -1,57 +1,49 @@
 #include <iostream>
+#include <algorithm>
 #include <queue>
 using namespace std;
 
 int N,K;
-queue<int> q;
-
-int append_q(int ans) {
-    int find=0;
-
-    if (ans == 0) {
-        q.push(N);
-        if (N == K) {
-          find = 1;
-        }
-    }
-
-    else {
-        int arr[2] = {1,-1};
-        int n = q.front();
-        int new_n;
-        q.pop();
-        for (int i=0;i<3;i++) {
-            if (i == 2) {
-                new_n = n * 2;
-            }
-            else {
-                new_n = n + arr[i];
-            }
-
-            if (new_n == K) {
-                find = 1;
-                break;
-            }
-            else {
-                q.push(new_n);
-            }
-        }
-
-    }
-
-
-    if (find) {
-        cout << ans;
-        return 0;
-    }
-    else {
-        append_q(ans+1);
-    }
-    return 0;
-}
+int arr[100001];
+queue <pair<int,int>> q;
 
 int main() {
     cin >> N >> K;
-    append_q(0);
+    
+    if (N == K) {
+        cout << 0;
+        return 0;
+    }
+
+    q.push(pair<int,int>(N,0));
+
+    while(!q.empty()) {
+        int num = q.front().first;
+        int depth = q.front().second;
+        q.pop();
+        if (2*num == K || num+1 == K || num-1 == K) {
+            cout << depth+1;
+            break;
+        }
+
+        else {
+            if (num <= 50000 && !arr[2*num]) {
+                q.push(pair<int,int>(2*num, depth+1));
+                arr[2*num] = 1;
+            }
+
+            if (num < 100000 && !arr[num+1]) {
+                q.push(pair<int,int>(num+1, depth+1));
+                arr[num+1] = 1;
+            }
+
+            if (num > 0 && !arr[num-1]) {
+                q.push(pair<int,int>(num-1, depth+1));
+                arr[num-1] = 1;
+            }
+        }
+    
+    }
+
     return 0;
 }
