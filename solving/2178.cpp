@@ -51,7 +51,7 @@ int main() {
                     q.push(tuple<int,int,int>(i,j-1,depth+1));
                 }
             }
-        }
+        } 
         visit[i][j] = 1;
     
     }
