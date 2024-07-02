@@ -11,7 +11,7 @@ int dy[4] = {0,1,0,-1};
 int alphabet[27];
 
 int DFS(int x, int y, int num) {
-    int tempnum=0;
+    int tempnum=0; 
     
     if (alphabet[arr[x+1][y]-'A'] == 0 && x+1 < R) {
         alphabet[arr[x+1][y]-'A']++;
