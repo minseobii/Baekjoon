@@ -1,39 +1,44 @@
 #include <iostream>
-#include <map>
+#include <algorithm>
 using namespace std;
 int x;
 int main() {
-    cin >> x;
-    while(!cin.eof()) {
-        map<int, char> m;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    while (cin >> x) {
+        x *= 10000000;
         int n;
-        int ans=0;
-        int l=0;
-        bool find = false;
-        x = x*10000000;
         cin >> n;
+
+        int l1=0;
+        int l2=0;
+        int arr[n];
+
         for (int i=0;i<n;i++) {
-            int temp;
-            cin >> temp;
-            m[temp] = 'O';
+            cin >> arr[i];
         }
-        
-        for (auto iter : m) {
-          cout << iter.first << ' ' << iter.second << endl;
-            if (x - iter.first < 10000001) {
-              if (m[x-iter.first] == 'O') {
-                  find = true;
-                  l = min(iter.first, x-iter.first);
-                  ans = max(ans,abs(x-2*iter.first));
-              }
-              else {
-                m.erase(x - iter.first);
-              }
+        sort(arr,arr+n);
+
+        int left = 0;
+        int right = n-1;
+        while(left < right) {
+            int sumlenght = arr[left] + arr[right];
+            if (sumlenght == x) {
+                l1 = arr[left];
+                l2 = arr[right];
+                break;
+            }
+            else if (sumlenght < x) {
+                left++;
+            }
+            else {
+                right--;
             }
         }
-        
-        if (find == true) {
-            cout << "yes " << l << ' ' << x-l << endl;
+
+        if (l1) {
+            cout << "yes " << l1 << ' ' << l2 << endl;
         }
         else {
             cout << "danger" << endl;
