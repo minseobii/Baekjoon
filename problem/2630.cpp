@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 int N;
+int arr[128][128] = {0,};
 
 int answhite=0;
 int ansblue=0;
@@ -9,13 +10,13 @@ struct PAIR {
     int white,blue;
 };
 
-struct PAIR solve(int arr[], int i, int j, int n) {
+struct PAIR solve(int i, int j, int n) {
     PAIR pair;
-    if (N == 2) {
+    if (n == 2) {
         int blue=0;
         if (arr[i][j] == 1) {
             blue++;
-        }s
+        }
         if (arr[i+1][j] == 1) {
             blue++;
         }
@@ -38,49 +39,49 @@ struct PAIR solve(int arr[], int i, int j, int n) {
     }
 
     else {
-        PAIR first_pair = solve(arr,i,j,N/2);
-        PAIR second_pair = solve(arr,i+N/2,j,N/2);
-        PAIR third_pair = solve(arr,i,j+N/2,N/2);
-        PAIR fourth_pair = solve(arr,i+N/2,j+N/2,N/2);
+        PAIR first_pair = solve(i,j,n/2);
+        PAIR second_pair = solve(i+n/2,j,n/2);
+        PAIR third_pair = solve(i,j+n/2,n/2);
+        PAIR fourth_pair = solve(i+n/2,j+n/2,n/2);
 
-        if (first_pair.bule == -1 && second_pair.bule == -1 && third_pair.bule == -1 && fourth_pair.bule == -1 &&) {
+        if (first_pair.blue == -1 && second_pair.blue == -1 && third_pair.blue == -1 && fourth_pair.blue == -1) {
             pair = {0,-1};
         }
-        else if (first_pair.white == -1 && second_pair.white == -1 && third_pair.white == -1 && fourth_pair.white == -1 &&) {
+        else if (first_pair.white == -1 && second_pair.white == -1 && third_pair.white == -1 && fourth_pair.white == -1) {
             pair = {-1 ,0};
         }
 
         else {
-            if (first_pair.bule == -1) {
-                first_pair.bule = 1;
+            if (first_pair.blue == -1) {
+                first_pair.blue = 1;
             }
             else if (first_pair.white == -1) {
                 first_pair.white = 1;
             }
 
-            if (secondpair.bule == -1) {
-                secondpair.bule = 1;
+            if (second_pair.blue == -1) {
+                second_pair.blue = 1;
             }
-            else if (secondpair.white == -1) {
-                secondpair.white = 1;
+            else if (second_pair.white == -1) {
+                second_pair.white = 1;
             }
 
-            if (third_pair.bule == -1) {
-                third_pair.bule = 1;
+            if (third_pair.blue == -1) {
+                third_pair.blue = 1;
             }
             else if (third_pair.white == -1) {
                 third_pair.white = 1;
             }
 
-            if (fourth_pair.bule == -1) {
-                fourth_pair.bule = 1;
+            if (fourth_pair.blue == -1) {
+                fourth_pair.blue = 1;
             }
             else if (fourth_pair.white == -1) {
                 fourth_pair.white = 1;
             }
 
             pair = {first_pair.white + second_pair.white + third_pair.white + fourth_pair.white ,
-                    first_pair.bule + second_pair.bule + third_pair.bule + fourth_pair.bule};
+                    first_pair.blue + second_pair.blue + third_pair.blue + fourth_pair.blue};
         }
     }
 
@@ -92,8 +93,6 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     cin >> N;
-
-    int arr[N][N] = {0,};
 
     for (int i=0;i<N;i++) {
         for (int j=0;j<N;j++) {
@@ -108,7 +107,7 @@ int main() {
         }
     }
 
-    PAIR ans_pair = solve(arr,0,0,N);
+    PAIR ans_pair = solve(0,0,N);
 
     if (ans_pair.blue == -1) {
         ansblue = 1;
