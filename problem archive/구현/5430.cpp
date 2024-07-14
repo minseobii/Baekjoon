@@ -56,7 +56,7 @@ int main() {
                 error_num = 1;
                 break;
             }
-        }
+        } 
 
         if (error_num == 1) {
             cout << "error" << '\n';
