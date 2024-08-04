@@ -41,7 +41,7 @@ int main() {
                     st.push(tempstr[len++]);
                 }
             }
-        }
+        } 
     }
 
     stack<char> printst;
@@ -58,6 +58,5 @@ int main() {
         printst.pop();
     }
     cout << endl;
-    
     return 0;
 }
