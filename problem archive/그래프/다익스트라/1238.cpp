@@ -3,7 +3,7 @@
 #include <queue>
 using namespace std;
 int N,M,X;
-int ans;
+int ans; 
 vector<pair<int, int>> v[1001][2]; 
 int visit[1001][2];
 
