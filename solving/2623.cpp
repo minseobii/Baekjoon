@@ -1,9 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
-int N,M,ans;
+int N,M;
 int end[1001];
 vector<int> v;
+vector<int> ans;
+queue<int> q;
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -22,7 +26,33 @@ int main() {
             }
         }
     }
-    for (int i=0;i)
-    cout << ans << endl;
+
+    for (int i=1;i<=N;i++) {
+        if (end[i] == 0) {
+            q.push(i);
+            ans.push_back(i);
+        }
+    }
+
+    while(!q.empty()) {
+        int x = q.front();
+        q.pop();
+
+        for (int i=0;i<v[x].size();i++) {
+            int nx = v[x][i];
+            if (--end[nx]) ans.push_back(nx);
+        }
+    }
+
+    for (int i=1;i<=N;i++) {
+        if (end[i]) {
+            cout << 0 << '\n';
+        }
+        return 0;
+    }
+    
+    for (int i=0;i<ans.size();i++) {
+        cout << ans[i] << '\n';
+    }
     return 0;
 }
