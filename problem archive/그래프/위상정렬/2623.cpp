@@ -3,8 +3,8 @@
 #include <queue>
 using namespace std;
 int N,M;
-int end[1001];
-vector<int> v;
+int approach[1001];
+vector<int> v[1001];
 vector<int> ans;
 queue<int> q;
 
@@ -22,13 +22,13 @@ int main() {
             else {
                 v[s].push_back(k);
                 s=k;
-                end[k]++;
+                approach[k]++;
             }
         }
     }
 
     for (int i=1;i<=N;i++) {
-        if (end[i] == 0) {
+        if (approach[i] == 0) {
             q.push(i);
             ans.push_back(i);
         }
@@ -40,15 +40,18 @@ int main() {
 
         for (int i=0;i<v[x].size();i++) {
             int nx = v[x][i];
-            if (--end[nx]) ans.push_back(nx);
+            if (--approach[nx] == 0) {
+                q.push(nx);
+                ans.push_back(nx);
+            }
         }
     }
 
     for (int i=1;i<=N;i++) {
-        if (end[i]) {
+        if (approach[i]) {
             cout << 0 << '\n';
+            return 0;
         }
-        return 0;
     }
     
     for (int i=0;i<ans.size();i++) {
