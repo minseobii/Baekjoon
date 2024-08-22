@@ -43,17 +43,27 @@ int main() {
                 }
             }
             else if (m[select] == 2) {
-                int temp = arr[select];
-                arr[select] = 0;
-                ans--;
-                while(arr[temp]) {
-                    select = temp;
-                    temp = arr[temp];
-                    arr[select] = 0;
-                    ans--;
-                }
-
+                int s;
+                int temp = arr[i];
+                bool find = false;
                 arr[i] = 0;
+                while(arr[temp]) {
+                    if (temp == select) {
+                        find = true;
+                    }
+
+                    if (find) {
+                        s = temp;
+                        temp = arr[temp];
+                        arr[s] = 0;
+                        ans--;
+                    }
+                    else {
+                        s = temp;
+                        temp = arr[temp];
+                        arr[s] = 0;
+                    }
+                }
             }
             else {
                 arr[i] = 0;
