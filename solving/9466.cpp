@@ -52,6 +52,8 @@ int main() {
                     arr[select] = 0;
                     ans--;
                 }
+
+                arr[i] = 0;
             }
             else {
                 arr[i] = 0;
