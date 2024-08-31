@@ -6,6 +6,7 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     cin >> N;
+    
     cout << ans << endl;
     return 0;
 }
