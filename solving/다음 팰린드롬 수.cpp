@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
-int N,ans;
+string s;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    cin >> N;
-    cout << ans << '\n';
+    cin >> s;
+    cout << s << endl;
     return 0;
 }
