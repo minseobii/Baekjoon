@@ -20,7 +20,7 @@ bool cmp(POINT a, POINT b) {
   long long ll = 1;
     if (ll*a.y*b.x != ll*a.x*b.y) return ll*a.y*b.x < ll*a.x*b.y;
     else if (a.x != b.x) return a.x < b.x;
-    return a.y < b.y;
+    return a.y > b.y;
 }
 
 int ccw(POINT v1, POINT v2) {
