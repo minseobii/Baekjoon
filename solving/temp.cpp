@@ -1,4 +1,9 @@
 #include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+#include <string>
+#include <cmath>
 using namespace std;
 int N,ans;
 int main() {
