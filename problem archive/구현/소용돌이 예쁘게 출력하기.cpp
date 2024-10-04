@@ -8,7 +8,7 @@
 #include <string>
 #include <cmath>
 using namespace std;
-int arr[50][5];
+int r1,r2,c1,c2,Max;
 
 int getnum(int r, int c) {
     int m = max(abs(r), abs(c));
@@ -37,29 +37,25 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int r1,r2,c1,c2,Max;
     cin >> r1 >> c1 >> r2 >> c2;
     
     for (int i=0;i<=r2-r1;i++) {
         for (int j=0;j<=c2-c1;j++) {
-            arr[i][j] = getnum(i+r1,j+c1);
-            Max = max(Max, arr[i][j]);
+            int k = getnum(i+r1,j+c1);
+            Max = max(Max, k);
         }
     }
 
-    int count = 0;
-    while(Max > 0) {
-        count += 1;
-        Max /= 10;
-    }
+    int count = to_string(Max).length();
 
     for (int i=0;i<=r2-r1;i++) {
         for (int j=0;j<=c2-c1;j++) {
-            string s = to_string(arr[i][j]);
+            int l = getnum(i+r1,j+c1);
+            string s = to_string(l);
             for (int k=0;k<count - s.length();k++) {
                 cout << ' ';
             }
-            cout << s << ' ';
+            cout << l << ' ';
         }
         cout << '\n';
     }
