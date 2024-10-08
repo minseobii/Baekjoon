@@ -9,17 +9,16 @@
 #include <cmath>
 using namespace std;
 int N,K,ans;
-string str = "bdefghjklmopqrsuvuxyz";
 string arr[50];
 bool alpha[26];
 
 void dfs(int a, int b) {
-    if (b == K) {
+    if (b == K-5) {
         int count = 0;
         for (int i=0;i<N;i++) {
             bool find = true;
             for (char c : arr[i]) {
-                if (alpha[c] == false) find = false;
+                if (alpha[c - 'a'] == false) find = false;
             }
             if (find) count++;
         }
@@ -27,11 +26,11 @@ void dfs(int a, int b) {
         return;
     }
 
-    for (int i=a;i<str.length();i++) {
-        if (alpha[str[i]]) continue;
-        alpha[str[i]] = true;
-        dfs(a+1, b+1);
-        alpha[str[i]] = false;
+    for (int i=a;i<26;i++) {
+        if (alpha[i]) continue;
+        alpha[i] = true;
+        dfs(i+1, b+1);
+        alpha[i] = false;
     }
 } 
 
@@ -43,11 +42,16 @@ int main() {
     for (int i=0;i<N;i++) {
         cin >> arr[i];
     }
-    alpha['a'] = true;
-    alpha['n'] = true;
-    alpha['t'] = true;
-    alpha['i'] = true;
-    alpha['c'] = true;
+    alpha[0] = true;
+    alpha[13] = true;
+    alpha[19] = true;
+    alpha[8] = true;
+    alpha[2] = true;
+
+    if (K < 5) {
+        cout << 0 << '\n';
+        return 0;
+    }
 
     dfs(0,0);
 
