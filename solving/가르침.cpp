@@ -13,8 +13,8 @@ string str = "bdefghjklmopqrsuvuxyz";
 string arr[50];
 bool alpha[26];
 
-void dfs(int k) {
-    if (k == K) {
+void dfs(int a, int b) {
+    if (b == K) {
         int count = 0;
         for (int i=0;i<N;i++) {
             bool find = true;
@@ -23,13 +23,15 @@ void dfs(int k) {
             }
             if (find) count++;
         }
-
-        ans = ans(max, ans);
+        ans = max(ans, count);
+        return;
     }
 
-    for (int i=0;i<str.length();i++) {
+    for (int i=a;i<str.length();i++) {
+        if (alpha[str[i]]) continue;
         alpha[str[i]] = true;
-        dfs(str[i])
+        dfs(a+1, b+1);
+        alpha[str[i]] = false;
     }
 } 
 
@@ -37,7 +39,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    cin >> N << K;
+    cin >> N >> K;
     for (int i=0;i<N;i++) {
         cin >> arr[i];
     }
@@ -47,7 +49,7 @@ int main() {
     alpha['i'] = true;
     alpha['c'] = true;
 
-    dfs(0);
+    dfs(0,0);
 
     cout << ans << '\n';
     return 0;
