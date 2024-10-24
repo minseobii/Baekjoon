@@ -43,7 +43,7 @@ int main() {
             v.push_back(i);
             break;
         }
-        while(k % i == 0) {
+        if (k % i == 0) {
             v.push_back(i);
             v.push_back(k/i); 
         }
