@@ -51,6 +51,34 @@ int main() {
 
     for (int i=1;i<=4;i++) if (CCW[i] == 0) zerocount++;
 
+    //조건 분기 정답
+    // 	ll ans1 = CCW(A, B, C) * CCW(A, B, D);
+	// ll ans2 = CCW(C, D, A) * CCW(C, D, B);
+
+	// if (ans1 == 0 && ans2 == 0) // 평행 혹은 양 끝점이 접촉해 있을 때
+	// {
+	// 	// pair 대소비교. 첫번째 인자가 같다면 두번째 인자 비교
+	// 	if (A > B) swap(A, B);
+	// 	if (C > D) swap(C, D);
+		
+	// 	if (A <= D && B >= C)
+	// 	{
+	// 		cout << 1 << '\n';
+	// 		find_intersection(A, B, C, D);
+	// 	}
+	// 	else cout << 0 << '\n';
+	// }
+	// else 
+	// {
+	// 	// 교차 혹은 한 점이 선분 위에 있을 때(끝점 x)
+	// 	if (ans1 <= 0 && ans2 <= 0)
+	// 	{
+	// 		cout << 1 << '\n';
+	// 		find_intersection(v[0], v[1], v[2], v[3]);
+	// 	}
+	// 	else cout << 0 << '\n';
+	// }
+
     if (CCW[1]*CCW[2] == -1 && CCW[3]*CCW[4] == -1) {
         long double m1,m2,b1,b2;
         if (x[1] == x[2]) solve(3,4,1,0);
