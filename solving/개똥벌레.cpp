@@ -26,7 +26,7 @@ int main() {
     sort(even,even+N/2);
     sort(odd,odd+N/2);
 
-    for (int i=2;i<=H;i++) {
+    for (int i=1;i<=H;i++) {
         int up = lower_bound(even,even+N/2,i) - even;
         int down = lower_bound(odd,odd+N/2,H-i+1) - odd;
         int temp = (N/2-up) + (N/2-down);
