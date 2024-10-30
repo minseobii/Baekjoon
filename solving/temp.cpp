@@ -14,6 +14,7 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     cin >> N;
+    
     cout << ans << '\n';
     return 0;
 }
