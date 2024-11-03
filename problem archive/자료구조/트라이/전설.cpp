@@ -9,7 +9,7 @@
 #include <cmath>
 using namespace std;
 int C,N,Q;
-vector<int> v;
+unordered_map<string,bool> name_set;
 
 struct Trie {
     bool finish;
@@ -19,33 +19,23 @@ struct Trie {
         Trie* now = this;
         for (int i=0;i<s.length();i++) {
             char cur = s[i];
-            if (now->next.find(cur) == now->next.end()) now->next[cur] = new Trie();
+            if (!now->next[cur]) now->next[cur] = new Trie();
             now = now->next[cur];
 
             if (i == s.length()-1) now->finish = true;
         }
     }
 
-    void color_query(string s) {
+    bool color_query(string s) {
         Trie* now = this;
         for (int i=0;i<s.length();i++) {
             char cur = s[i];
-            if (now->next.find(cur) == now->next.end()) continue;
+            if (!now->next[cur]) break;
 
             now = now->next[cur];
-            if (now->finish && i+1 < s.length()) v.push_back(i+1);
+            if (now->finish && name_set[s.substr(i+1)] == true) return true;
         }
-    }
-
-    bool name_query(string s, int idx) {
-        Trie* now = this;
-        for (int i=idx;i<s.length();i++) {
-            char cur = s[i];
-            if (i == s.length()-1 && now->next[cur]->finish) break;
-            if (now->next.find(cur) == now->next.end()) return false;
-            now = now->next[cur];
-        }
-        return true; 
+        return false;
     }
 };
 
@@ -55,8 +45,7 @@ int main() {
     cout.tie(NULL);
     cin >> C >> N;
     Trie* color_root = new Trie();
-    Trie* name_root = new Trie();
-    
+
     for (int i=0;i<C;i++) {
         string s;
         cin >> s;
@@ -65,7 +54,7 @@ int main() {
     for (int i=0;i<N;i++) {
         string s;
         cin >> s;
-        name_root->insert(s);
+        name_set[s] = true;
     }
     
     cin >> Q;
@@ -73,17 +62,7 @@ int main() {
         string s;
         cin >> s;
 
-        v.clear();
-        color_root->color_query(s);
-
-        bool ans = false;
-        for (int idx : v) {
-            if (name_root->name_query(s,idx)) {
-                ans = true;
-                break;
-            }
-        }
-        if (ans) cout << "Yes" << '\n';
+        if (color_root->color_query(s)) cout << "Yes" << '\n';
         else cout << "No" << '\n';
     }
     return 0;
