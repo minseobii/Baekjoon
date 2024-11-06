@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <string>
+#include <cstring>
 #include <cmath>
 using namespace std;
 int N,ans;
